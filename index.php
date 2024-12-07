@@ -1,31 +1,6 @@
 <?php
 require_once './includes/connect.php';
 
-$sql = "SELECT 
-p.id AS package_id,
-p.name AS package_name,
-p.description AS package_description,
-p.creation_date AS package_creation_date,
-string_agg(a.name, ', ') AS author_names
-FROM 
-packages p
-JOIN 
-author_package ap ON p.id = ap.package_id
-JOIN 
-authors a ON ap.author_id = a.id
-LEFT JOIN 
-versions v ON p.id = v.package_id
-GROUP BY 
-p.id, p.name, p.description, p.creation_date;
-
-";
-
-$result = pg_query($conn, $sql);
-
-if (!$result) {
-    die("Error" . pg_last_error($conn));
-}
-
 ?>
 
 
@@ -51,6 +26,29 @@ if (!$result) {
     <main>
         <h1 class="text-center p-10 text-xl font-bold">Packages</h1>
         
+        <table class="w-full">
+            <thead>
+                <tr class="p-1 px-2 text-left w-full bg-white text-black">
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Versions</th>
+                    <th>Creation Date</th>
+                    <th>Authors</th>
+                </tr>
+            </thead>
+            <tbody class="bg-gray-500 text-black">
+                <tr>
+                    <td>1</td>
+                    <td>FNL</td>
+                    <td>MUSIC HAHAHAHAHAHA</td>
+                    <td>1.2.0</td>
+                    <td>17/7/2024</td>
+                    <td>taha,jad,abolah</td>
+                </tr>
+            </tbody>
+        </table>
+
     </main>
 
 </body>
