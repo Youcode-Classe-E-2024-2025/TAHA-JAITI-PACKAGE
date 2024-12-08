@@ -36,51 +36,44 @@ CREATE TABLE author_package (
 INSERT INTO authors (name, email) VALUES
 ('Taha Ostora', 'taha@ostore.com'),
 ('Jad Bozo', 'jad@k3k3.com'),
-('Docteur Abdolah', 'monsieur@docteur.com');
+('Docteur Abdolah', 'monsieur@docteur.com'),
+('Eve Martin', 'eve@modulemaster.com'),
+('Frank White', 'frank@npmhub.com'),
+('Grace Lee', 'grace@opensource.dev'),
+('Hannah Young', 'hannah@npmcore.com'),
+('Ian Brown', 'ian@devtools.com');
 
 -- insert data into packages table
 INSERT INTO packages (name, description) VALUES
 ('TailwindCSS', 'Tranform the way you write css into utility classes'),
 ('FNL', 'Listen to music while coding in your IDE'),
-('FaceCheck', 'A Face checker in your code that describes your current state');
+('FaceCheck', 'A Face checker in your code that describes your current state'),
+('Webpack', 'A static module bundler for modern JavaScript applications'),
+('Vue.js', 'A progressive JavaScript framework for building user interfaces'),
+('Moment.js', 'A library for parsing, validating, manipulating, and formatting dates'),
+('Jest', 'A delightful JavaScript testing framework with a focus on simplicity'),
+('Chalk', 'Terminal string styling done right');
 
 -- insert data into versions table
 INSERT INTO versions (package_id, version_number, release_date) VALUES
 (1, '1.0.0', DEFAULT),
 (1, '1.1.0', DEFAULT),
 (2, '2.0.0', DEFAULT),
-(3, '3.0.0', DEFAULT);
+(3, '3.0.0', DEFAULT),
+(4, '5.75.0', DEFAULT),
+(4, '5.74.0', '2023-10-01'),
+(5, '3.2.47', DEFAULT),
+(6, '2.29.4', DEFAULT),
+(7, '29.6.1', DEFAULT),
+(7, '29.5.0', '2023-08-15'),
+(8, '5.3.0', DEFAULT);
 
 -- insert data into author_package table
 INSERT INTO author_package (author_id, package_id) VALUES
-(1, 1),
-(1, 2),
-(2, 1),
-(2, 3),
-(3, 2),
-(3, 3);
+(1, 1),(1, 2),(2, 1),(2, 3),
+(3, 2),(3, 3),(1, 4),(2, 4),
+(3, 5),(4, 6), (5, 7), (6, 8),
+(5, 5),(7, 6),(8, 7),(2, 8);
 
-
--- SELECT 
---     a.id AS author_id,
---     a.name AS author_name,
---     a.email AS author_email,
---     p.id AS package_id,
---     p.name AS package_name,
---     p.description AS package_description,
---     p.creation_date AS package_creation_date,
---     v.id AS version_id,
---     v.version_number AS version_number,
---     v.release_date AS version_release_date
--- FROM 
---     authors a
--- JOIN 
---     author_package ap ON a.id = ap.author_id
--- JOIN 
---     packages p ON ap.package_id = p.id
--- LEFT JOIN 
---     versions v ON p.id = v.package_id
--- WHERE 
---     p.id = 1;
 
 
