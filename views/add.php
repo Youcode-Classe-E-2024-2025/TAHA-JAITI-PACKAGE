@@ -20,7 +20,7 @@
     </main>
 
     <?php 
-    include './addAuthor.html';
+    include './addModal.html';
     ?>
 </body>
 </html>
