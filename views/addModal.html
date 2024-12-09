@@ -5,7 +5,7 @@
             <h1 class="text-center font-bold text-xl text-white">ADD AUTHOR</h1>
             <button id="closeAuthor" class="text-white text-2xl">X</button>
         </div>
-        <form class="my-6" action="./../src/models/author.php" method="post">
+        <form class="my-6" action="./../src/controller/author.php" method="post">
             <input name="authorName" class="p-2 my-2 rounded w-[100%] focus:outline-blue-600" required placeholder="Name" type="text">
             <input name="authorMail" class="p-2 my-2 rounded w-[100%] focus:outline-blue-600" required placeholder="Email" type="email">
             <button name="authorSubmit" class="bg-blue-600 hover:bg-blue-500 text-white font-semibold p-2 mt-3 rounded w-[100%]">ADD AUTHOR</button>
@@ -19,7 +19,7 @@
             <h1 class="text-center font-bold text-xl text-white">ADD PACKAGE</h1>
             <button id="closePackage" class="text-white text-2xl">X</button>
         </div>
-        <form class="my-6" action="./../src/models/package.php" method="post">
+        <form class="my-6" action="./../src/controller/package.php" method="post">
             <input name="packageName" class="p-2 my-2 rounded w-[100%] focus:outline-blue-600" required placeholder="Name" type="text">
             <input name="packageDesc" class="p-2 my-2 rounded w-[100%] focus:outline-blue-600" required placeholder="Description" type="text">
             <input name="packageDate" class="p-2 my-2 rounded w-[100%] focus:outline-blue-600" required placeholder="Creation Date" type="date">
@@ -35,7 +35,7 @@
             <h1 class="text-center font-bold text-xl text-white">ADD VERSION</h1>
             <button id="closeVersion" class="text-white text-2xl">X</button>
         </div>
-        <form class="my-6" action="./../src/models/version.php" method="post">
+        <form class="my-6" action="./../src/controller/version.php" method="post">
             <input name="versionNum" class="p-2 my-2 rounded w-[100%] focus:outline-blue-600" required placeholder="Version Number" type="text">
             <input name="releaseDate" class="p-2 my-2 rounded w-[100%] focus:outline-blue-600" required placeholder="Release Date" type="date">
             <input name="versionPackage" class="p-2 my-2 rounded w-[100%] focus:outline-blue-600" required placeholder="Package ID for this Version" type="number">

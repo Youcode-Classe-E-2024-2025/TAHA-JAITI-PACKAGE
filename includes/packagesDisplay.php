@@ -70,9 +70,12 @@ if (!$result) {
                 }
                 echo "<td class='py-3 px-4'>" . $row["package_creation_date"] . "</td>";
                 echo "<td class='py-3 px-4'>" . $row["version_numbers"] . "</td>";
-                echo "<td class='py-3 px-4 text-center'>
+                echo "<td class='py-3 px-4 text-center flex justify-end gap-10'>
                                         <button class='my-2 btn bg-blue-600 hover:bg-blue-700'>EDIT</button>
-                                        <button class='my-2 btn bg-red-600 hover:bg-red-700'>DELETE</button>
+                                        <form method='post' action='./src/controller/deletePackage.php'>
+                                            <input type='hidden' name='packageDel' value='" . $row['package_id'] . "' />
+                                            <button type='submit' class='my-2 btn bg-red-600 hover:bg-red-700'>DELETE</button>
+                                        </form>
                                         </td> 
                                 ";
                 echo "</tr>";
