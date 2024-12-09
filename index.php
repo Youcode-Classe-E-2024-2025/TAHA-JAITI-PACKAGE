@@ -16,15 +16,13 @@ require_once './includes/connect.php';
 <body class="bg-black text-white">
 
     <nav class="flex justify-end w-full p-2 px-4">
-        <a href="#" class="bg-red-700 px-4 py-1 rounded-sm hover:bg-red-800">ADD</a>
+        <a href="./views/add.php" class="bg-red-700 px-4 py-1 rounded-sm hover:bg-red-800">ADD</a>
     </nav>
 
     <main>
         <h1 class="text-center p-10 text-xl font-bold">Packages</h1>
         
-        <?php 
-        include './views/addAuthor.html';
-        ?>
+        
         
     </main>
 
