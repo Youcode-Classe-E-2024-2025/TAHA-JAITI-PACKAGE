@@ -13,10 +13,23 @@ require_once './includes/connect.php';
     <title>Package Maneger</title>
 </head>
 
-<body class="bg-black text-white">
+<body class="bg-black ">
+    <?php 
+        session_start();
+
+        if (isset($_SESSION['msg'])){
+            $msg = $_SESSION['msg'];
+            $type = $_SESSION['type'];
+
+            echo "<div class='msg {$type}'>{$msg}</div>";
+
+            unset($_SESSION["msg"], $_SESSION['result']);
+        }
+    ?>
+
 
     <nav class="flex justify-end w-full p-2 px-4">
-        <a href="./views/add.php" class="bg-red-700 px-4 py-1 rounded-sm hover:bg-red-800">ADD</a>
+        <a href="./views/add.php" class="btn bg-blue-500">ADD</a>
     </nav>
 
     <main>
