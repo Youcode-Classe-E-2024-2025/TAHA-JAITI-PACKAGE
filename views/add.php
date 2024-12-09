@@ -12,6 +12,7 @@
 <body class="bg-black text-white">
 
     <main>
+        <a href="../index.php" class="btn bg-blue-500">HOME</a>
         <div class="flex justify-between mt-10 p-10">
             <button id="openAuthor" class="btn bg-blue-500">ADD AUTHOR</button>
             <button id="openPackage" class="btn bg-blue-500">ADD PACKAGE</button>

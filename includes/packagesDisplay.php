@@ -27,7 +27,8 @@ if (!$result) {
 }
 ?>
 
-<div class="overflow-x-auto">
+<div id="packagesDisplay" class="hidden overflow-x-auto">
+    <h1 class="text-center p-10 text-white text-xl font-bold">Packages</h1>
     <table class="w-full border-collapse border border-gray-500 shadow-lg rounded-sm overflow-hidden">
         <thead>
             <tr class="bg-gradient-to-r from-red-700 to-indigo-800 text-white text-sm font-medium uppercase tracking-wide">
@@ -56,21 +57,21 @@ if (!$result) {
                 </td>
             </tr> -->
             <?php
-                while ($row = pg_fetch_array($result)) {
-                    echo "<tr class='hover:bg-indigo-900 transition-colors'>";
-                    echo "<td class='py-3 px-4'>" . $row['package_id'] . "</td>";
-                    echo "<td class='py-3 px-4'>" . $row["package_name"] . "</td>";
-                    echo "<td class='py-3 px-4'>" . $row["package_description"] . "</td>";
-                    echo "<td class='py-3 px-4'>" . $row["author_name"] . "</td>";
-                    echo "<td class='py-3 px-4'>" . $row["package_creation_date"] . "</td>";
-                    echo "<td class='py-3 px-4'>" . $row["version_numbers"] . "</td>";
-                    echo "<td class='py-3 px-4 text-center'>
+            while ($row = pg_fetch_array($result)) {
+                echo "<tr class='hover:bg-indigo-900 transition-colors'>";
+                echo "<td class='py-3 px-4'>" . $row['package_id'] . "</td>";
+                echo "<td class='py-3 px-4'>" . $row["package_name"] . "</td>";
+                echo "<td class='py-3 px-4'>" . $row["package_description"] . "</td>";
+                echo "<td class='py-3 px-4'>" . $row["author_name"] . "</td>";
+                echo "<td class='py-3 px-4'>" . $row["package_creation_date"] . "</td>";
+                echo "<td class='py-3 px-4'>" . $row["version_numbers"] . "</td>";
+                echo "<td class='py-3 px-4 text-center'>
                                         <button class='my-2 btn bg-blue-600 hover:bg-blue-700'>EDIT</button>
                                         <button class='my-2 btn bg-red-600 hover:bg-red-700'>DELETE</button>
                                         </td> 
                                 ";
-                    echo "</tr>";
-                }
+                echo "</tr>";
+            }
             ?>
 
 

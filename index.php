@@ -14,33 +14,38 @@ require_once './includes/connect.php';
 </head>
 
 <body class="bg-black ">
-    <?php 
-        session_start();
+    <?php
+    session_start();
 
-        if (isset($_SESSION['msg'])){
-            $msg = $_SESSION['msg'];
-            $type = $_SESSION['type'];
+    if (isset($_SESSION['msg'])) {
+        $msg = $_SESSION['msg'];
+        $type = $_SESSION['type'];
 
-            echo "<div class='msg {$type} text-2xl'>{$msg}</div>";
+        echo "<div class='msg {$type} text-2xl'>{$msg}</div>";
 
-            unset($_SESSION["msg"], $_SESSION['result']);
-        }
+        unset($_SESSION["msg"], $_SESSION['result']);
+    }
     ?>
 
-    <nav class="flex justify-end w-full p-2 px-4">
+    <nav class="flex justify-between w-full p-2 px-4">
+        <div class="flex w-1/3 gap-6 justify-between">
+            <button id="viewAuthors" class="btn bg-blue-500">AUTHORS</button>
+            <button id="viewPackages" class="btn bg-blue-500">PACKAGES</button>
+        </div>
         <a href="./views/add.php" class="btn bg-blue-500">ADD</a>
     </nav>
 
     <main>
-        <h1 class="text-center p-10 text-xl font-bold">Packages</h1>
-        
-        <?php 
-            include './includes/display.php';
+
+
+        <?php
+        include './includes/packagesDisplay.php';
+        include './includes/authorsDisplay.php';
         ?>
-        
     </main>
 
 
+    <script src="./dist/index.js"></script>
     <script src="./dist/cleaner.js"></script>
 </body>
 
