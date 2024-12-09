@@ -27,7 +27,6 @@ require_once './includes/connect.php';
         }
     ?>
 
-
     <nav class="flex justify-end w-full p-2 px-4">
         <a href="./views/add.php" class="btn bg-blue-500">ADD</a>
     </nav>
@@ -41,6 +40,8 @@ require_once './includes/connect.php';
         
     </main>
 
+
+    <script src="./dist/cleaner.js"></script>
 </body>
 
 </html>

@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['authorSubmit'])) {
         die('Empty inputs');
     }
 
-    $query = "INSERT INTO authors (name, email) VALUES ($1, $2)";
+    $query = "INSERT INTO authors (name, email) VALUES ($1, $2) RETURNING id";
     $params = [$authorName,$authorMail];
 
     $result = pg_query_params($conn, $query, $params);
@@ -25,14 +25,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['authorSubmit'])) {
     session_start();
 
     if ($result) {
-        $authorId = pg_fetch_result($result,0,"id");
+        $authorId = pg_fetch_result($result,0,'id');
 
         $_SESSION['msg'] = "Author Added Successfully ID:". $authorId;
         $_SESSION["type"] = "success";
         header('Location: ./../../index.php');
         exit;
     } else {
-        $_SESSION['msg'] = 'Failed adding authir'. pg_last_error($conn);
+        $_SESSION['msg'] = 'Failed adding author '. pg_last_error($conn);
         $_SESSION['type'] = 'error';
         header('Location: ./../../index.php');
         exit;

@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['packageSubmit'])) {
     }
 
     $query = "INSERT INTO packages (name, description, creation_date, author_id) 
-    VALUES ($1, $2, $3, $4)";
+    VALUES ($1, $2, $3, $4) RETURNING id";
     $params = [$packageName,$packageDesc, $packageDate, $packageAuthor];
 
     $result = pg_query_params($conn, $query, $params);
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['packageSubmit'])) {
         header('Location: ./../../index.php');
         exit;
     } else {
-        $_SESSION['msg'] = 'Failed adding package'. pg_last_error($conn);
+        $_SESSION['msg'] = 'Failed adding package '. pg_last_error($conn);
         $_SESSION['type'] = 'error';
         header('Location: ./../../index.php');
         exit;
