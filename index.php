@@ -9,6 +9,7 @@ require_once './includes/connect.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Package Maneger</title>
 </head>
 
@@ -31,20 +32,19 @@ require_once './includes/connect.php';
             <button id="viewAuthors" class="btn bg-blue-500">AUTHORS</button>
             <button id="viewPackages" class="btn bg-blue-500">PACKAGES</button>
         </div>
-        <a href="./views/add.php" class="btn bg-blue-500">ADD</a>
+        <button id="openAdding" class="btn bg-blue-500">ADD</button>
     </nav>
 
     <main>
-
-
         <?php
+        include './views/addModals.html';    
         include './includes/packagesDisplay.php';
         include './includes/authorsDisplay.php';
         ?>
     </main>
 
 
-    <script src="./dist/index.js"></script>
+    <script src="./dist/handler.js"></script>
 </body>
 
 </html>
