@@ -2,31 +2,29 @@
 
 \c package_manager;
 
--- Authors table
 CREATE TABLE authors (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(150) UNIQUE NOT NULL
 );
 
--- packages tables
 CREATE TABLE packages (
     id SERIAL PRIMARY KEY,
     name VARCHAR(150) UNIQUE NOT NULL,
     description TEXT,
     creation_date DATE DEFAULT CURRENT_DATE,
-    author_id INTEGER NOT NULL,
-    FOREIGN KEY (author_id) REFERENCES authors(id)
+    author_id INTEGER,
+    FOREIGN KEY (author_id) REFERENCES authors(id) ON DELETE SET NULL
 );
 
--- versions table
 CREATE TABLE versions (
     id SERIAL PRIMARY KEY,
     package_id INTEGER NOT NULL,
     version_number VARCHAR(25) NOT NULL,
     release_date DATE DEFAULT CURRENT_DATE,
-    FOREIGN KEY (package_id) REFERENCES packages(id)
+    FOREIGN KEY (package_id) REFERENCES packages(id) ON DELETE CASCADE
 );
+
 
 
 INSERT INTO authors (name, email) VALUES
