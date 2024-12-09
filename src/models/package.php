@@ -26,7 +26,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['packageSubmit'])) {
     session_start();
 
     if ($result) {
-        $_SESSION['msg'] = "Package Added Successfully";
+        $packageId = pg_fetch_result($result,0,"id");
+
+        $_SESSION['msg'] = "Author Added Successfully ID:". $packageId;
         $_SESSION["type"] = "success";
         header('Location: ./../../index.php');
         exit;

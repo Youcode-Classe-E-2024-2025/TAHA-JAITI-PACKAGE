@@ -2,13 +2,14 @@
 
 \c package_manager;
 
+-- Authors table
 CREATE TABLE authors (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(150) UNIQUE NOT NULL
 );
 
--- Create the packages table
+-- packages tables
 CREATE TABLE packages (
     id SERIAL PRIMARY KEY,
     name VARCHAR(150) UNIQUE NOT NULL,
@@ -18,7 +19,7 @@ CREATE TABLE packages (
     FOREIGN KEY (author_id) REFERENCES authors(id)
 );
 
--- Create the versions table
+-- versions table
 CREATE TABLE versions (
     id SERIAL PRIMARY KEY,
     package_id INTEGER NOT NULL,
@@ -27,70 +28,55 @@ CREATE TABLE versions (
     FOREIGN KEY (package_id) REFERENCES packages(id)
 );
 
--- Create the contributions table for multiple authors contributing to one package
-CREATE TABLE contributions (
-    package_id INTEGER NOT NULL,
-    author_id INTEGER NOT NULL,
-    PRIMARY KEY (package_id, author_id),
-    FOREIGN KEY (package_id) REFERENCES packages(id),
-    FOREIGN KEY (author_id) REFERENCES authors(id)
-);
 
 INSERT INTO authors (name, email) VALUES
 ('Alice Johnson', 'alice.johnson@example.com'),
 ('Bob Smith', 'bob.smith@example.com'),
 ('Charlie Brown', 'charlie.brown@example.com'),
-('Diana Prince', 'diana.prince@example.com'),
-('Ethan Hunt', 'ethan.hunt@example.com'),
-('Fiona Gallagher', 'fiona.gallagher@example.com'),
-('George Washington', 'george.washington@example.com'),
-('Hannah Baker', 'hannah.baker@example.com'),
-('Ian Malcolm', 'ian.malcolm@example.com'),
-('Jasmine Lee', 'jasmine.lee@example.com');
+('David Green', 'david.green@example.com'),
+('Eva White', 'eva.white@example.com'),
+('Frank Harris', 'frank.harris@example.com'),
+('Grace Lee', 'grace.lee@example.com'),
+('Hannah Miller', 'hannah.miller@example.com'),
+('Isaac Wilson', 'isaac.wilson@example.com'),
+('Jack Davis', 'jack.davis@example.com');
+
+
 
 INSERT INTO packages (name, description, creation_date, author_id) VALUES
-('express', 'Fast, unopinionated, minimalist web framework for Node.js.', CURRENT_DATE, 1),
-('lodash', 'A modern JavaScript utility library delivering modularity, performance, & extras.', CURRENT_DATE, 2),
-('mongoose', 'MongoDB object modeling designed to work in an asynchronous environment.', CURRENT_DATE, 3),
-('react', 'A JavaScript library for building user interfaces.', CURRENT_DATE, 4),
-('axios', 'Promise based HTTP client for the browser and node.js.', CURRENT_DATE, 5),
-('vue', 'The Progressive JavaScript Framework.', CURRENT_DATE, 6),
-('next.js', 'The React Framework for Production.', CURRENT_DATE, 7),
-('jQuery', 'A fast, small, and feature-rich JavaScript library.', CURRENT_DATE, 8),
-('webpack', 'A static module bundler for modern JavaScript applications.', CURRENT_DATE, 9),
-('typescript', 'A superset of JavaScript that compiles to clean JavaScript output.', CURRENT_DATE, 10);
+('express', 'Fast, unopinionated, minimalist web framework for Node.js', '2024-01-01', 1),
+('lodash', 'A modern utility library delivering modularity, performance & extras.', '2024-02-15', 2),
+('react', 'A JavaScript library for building user interfaces', '2024-03-20', 3),
+('axios', 'Promise based HTTP client for the browser and Node.js', '2024-04-10', 4),
+('moment', 'Parse, validate, manipulate, and display dates and times in JavaScript', '2024-05-05', 5),
+('chalk', 'Terminal string styling done right', '2024-06-12', 6),
+('dotenv', 'Loads environment variables from .env for nodejs projects', '2024-07-18', 7),
+('webpack', 'A static module bundler for modern JavaScript applications', '2024-08-22', 8),
+('vue', 'A progressive JavaScript framework for building user interfaces', '2024-09-09', 9),
+('babel', 'A JavaScript compiler for writing next generation JavaScript', '2024-10-25', 10);
+
 
 INSERT INTO versions (package_id, version_number, release_date) VALUES
-(1, '4.17.1', 2016-03-12),
-(1, '4.17.2', 2020-12-05),
-(2, '4.17.21', CURRENT_DATE),
-(2, '4.17.22', 2012-08-16),
-(3, '6.0.12', 2004-08-16),
-(4, '17.0.2', CURRENT_DATE),
-(5, '0.21.1', CURRENT_DATE),
-(6, '2.6.14', CURRENT_DATE),
-(7, '12.0.7', 2019-11-01),
-(8, '3.6.0', CURRENT_DATE),
-(9, '5.64.0', CURRENT_DATE),
-(10, '4.5.5', CURRENT_DATE);
-
-INSERT INTO contributions (package_id, author_id) VALUES
-(1, 1), 
-(1, 2), 
-(2, 2), 
-(2, 3), 
-(3, 3), 
-(4, 4), 
-(5, 5), 
-(6, 6),
-(6, 2),
-(2, 5),
-(10, 6),
-(2, 4),
-(7, 7),
-(8, 8), 
-(9, 9),
-(10, 10);
+(1, '4.18.1', '2024-01-01'),
+(1, '4.18.0', '2024-01-15'),
+(2, '4.17.21', '2024-02-15'),
+(2, '4.17.20', '2024-03-05'),
+(3, '18.2.0', '2024-03-20'),
+(3, '18.1.0', '2024-04-01'),
+(4, '0.21.1', '2024-04-10'),
+(4, '0.21.0', '2024-04-20'),
+(5, '2.29.1', '2024-05-05'),
+(5, '2.29.0', '2024-05-15'),
+(6, '5.2.3', '2024-06-12'),
+(6, '5.2.2', '2024-06-22'),
+(7, '16.0.0', '2024-07-18'),
+(7, '15.9.9', '2024-07-28'),
+(8, '5.74.0', '2024-08-22'),
+(8, '5.73.0', '2024-09-01'),
+(9, '3.2.0', '2024-09-09'),
+(9, '3.1.5', '2024-09-19'),
+(10, '7.8.0', '2024-10-25'),
+(10, '7.7.5', '2024-11-05');
 
 
 

@@ -21,7 +21,7 @@ require_once './includes/connect.php';
             $msg = $_SESSION['msg'];
             $type = $_SESSION['type'];
 
-            echo "<div class='msg {$type}'>{$msg}</div>";
+            echo "<div class='msg {$type} text-2xl'>{$msg}</div>";
 
             unset($_SESSION["msg"], $_SESSION['result']);
         }

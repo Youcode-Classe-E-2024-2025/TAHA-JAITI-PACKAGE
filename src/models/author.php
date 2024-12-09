@@ -22,12 +22,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['authorSubmit'])) {
 
     $result = pg_query_params($conn, $query, $params);
 
+    session_start();
+
     if ($result) {
-        echo "Author Added";
+        $authorId = pg_fetch_result($result,0,"id");
+
+        $_SESSION['msg'] = "Author Added Successfully ID:". $authorId;
+        $_SESSION["type"] = "success";
         header('Location: ./../../index.php');
         exit;
     } else {
-        echo "failed to add" . pg_last_error($conn);
+        $_SESSION['msg'] = 'Failed adding authir'. pg_last_error($conn);
+        $_SESSION['type'] = 'error';
         header('Location: ./../../index.php');
         exit;
     }

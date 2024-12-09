@@ -3,25 +3,22 @@ include "connect.php";
 
 $sql = "
 SELECT 
-    p.id AS package_id,
-    p.name AS package_name,
-    p.description AS package_description,
-    STRING_AGG(DISTINCT a.name, ', ') AS authors,
-    STRING_AGG(DISTINCT v.version_number, ', ') AS versions,
-    p.creation_date
+    p.id AS package_id, 
+    p.name AS package_name, 
+    p.description AS package_description, 
+    a.name AS author_name, 
+    p.creation_date AS package_creation_date,
+    string_agg(v.version_number, ', ') AS version_numbers
 FROM 
     packages p
+JOIN 
+    authors a ON p.author_id = a.id
 LEFT JOIN 
     versions v ON p.id = v.package_id
-LEFT JOIN 
-    contributions c ON p.id = c.package_id
-LEFT JOIN 
-    authors a ON c.author_id = a.id
 GROUP BY 
-    p.id, p.name, p.description, p.creation_date
+    p.id, p.name, p.description, a.name, p.creation_date
 ORDER BY 
-    p.id;
-    ";
+    p.id;";
 
 $result = pg_query($conn, $sql);
 
@@ -38,8 +35,8 @@ if (!$result) {
                 <th class="py-3 px-4 text-left">Name</th>
                 <th class="py-3 px-4 text-left">Description</th>
                 <th class="py-3 px-4 text-left">Authors</th>
-                <th class="py-3 px-4 text-left">Versions</th>
                 <th class="py-3 px-4 text-left">Creation Date</th>
+                <th class="py-3 px-4 text-left">Versions</th>
                 <th class="py-3 px-4"></th>
             </tr>
         </thead>
@@ -64,9 +61,9 @@ if (!$result) {
                     echo "<td class='py-3 px-4'>" . $row['package_id'] . "</td>";
                     echo "<td class='py-3 px-4'>" . $row["package_name"] . "</td>";
                     echo "<td class='py-3 px-4'>" . $row["package_description"] . "</td>";
-                    echo "<td class='py-3 px-4'>" . $row["authors"] . "</td>";
-                    echo "<td class='py-3 px-4'>" . $row["versions"] . "</td>";
-                    echo "<td class='py-3 px-4'>" . $row["creation_date"] . "</td>";
+                    echo "<td class='py-3 px-4'>" . $row["author_name"] . "</td>";
+                    echo "<td class='py-3 px-4'>" . $row["package_creation_date"] . "</td>";
+                    echo "<td class='py-3 px-4'>" . $row["version_numbers"] . "</td>";
                     echo "<td class='py-3 px-4 text-center'>
                                         <button class='my-2 btn bg-blue-600 hover:bg-blue-700'>EDIT</button>
                                         <button class='my-2 btn bg-red-600 hover:bg-red-700'>DELETE</button>
