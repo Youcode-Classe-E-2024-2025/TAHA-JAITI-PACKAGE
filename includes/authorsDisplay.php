@@ -29,9 +29,12 @@ if (!$result) {
                 echo "<td class='py-3 px-4'>" . $row['id'] . "</td>";
                 echo "<td class='py-3 px-4'>" . $row["name"] . "</td>";
                 echo "<td class='py-3 px-4'>" . $row["email"] . "</td>";
-                echo "<td class='py-3 px-4 text-center'>
+                echo "<td class='py-3 px-4 text-center flex justify-end gap-10'>
                                         <button class='my-2 btn bg-blue-600 hover:bg-blue-700'>EDIT</button>
-                                        <button class='my-2 btn bg-red-600 hover:bg-red-700'>DELETE</button>
+                                        <form method='post' action='./src/models/deleteAuthor.php'>
+                                            <input type='hidden' name='authorDel' value='" . $row['id'] . "' />
+                                            <button type='submit' class='my-2 btn bg-red-600 hover:bg-red-700'>DELETE</button>
+                                        </form>
                                         </td> 
                                 ";
                 echo "</tr>";

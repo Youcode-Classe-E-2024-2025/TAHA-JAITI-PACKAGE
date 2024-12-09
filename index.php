@@ -28,7 +28,7 @@ require_once './includes/connect.php';
     ?>
 
     <nav class="flex justify-between w-full p-2 px-4">
-        <div class="flex w-1/3 gap-6 justify-between">
+        <div class="flex w-fit gap-6 justify-between">
             <button id="viewAuthors" class="btn bg-blue-500">AUTHORS</button>
             <button id="viewPackages" class="btn bg-blue-500">PACKAGES</button>
         </div>
@@ -46,7 +46,6 @@ require_once './includes/connect.php';
 
 
     <script src="./dist/index.js"></script>
-    <script src="./dist/cleaner.js"></script>
 </body>
 
 </html>

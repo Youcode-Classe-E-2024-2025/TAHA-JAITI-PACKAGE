@@ -11,14 +11,15 @@ SELECT
     string_agg(v.version_number, ', ') AS version_numbers
 FROM 
     packages p
-JOIN 
+LEFT JOIN 
     authors a ON p.author_id = a.id
 LEFT JOIN 
     versions v ON p.id = v.package_id
 GROUP BY 
     p.id, p.name, p.description, a.name, p.creation_date
 ORDER BY 
-    p.id;";
+    p.id;
+";
 
 $result = pg_query($conn, $sql);
 
@@ -62,7 +63,11 @@ if (!$result) {
                 echo "<td class='py-3 px-4'>" . $row['package_id'] . "</td>";
                 echo "<td class='py-3 px-4'>" . $row["package_name"] . "</td>";
                 echo "<td class='py-3 px-4'>" . $row["package_description"] . "</td>";
-                echo "<td class='py-3 px-4'>" . $row["author_name"] . "</td>";
+                if ($row["author_name"] === null) {
+                    echo "<td>No Author</td>";
+                } else {
+                    echo "<td class='py-3 px-4'>" . $row["author_name"] . "</td>";
+                }
                 echo "<td class='py-3 px-4'>" . $row["package_creation_date"] . "</td>";
                 echo "<td class='py-3 px-4'>" . $row["version_numbers"] . "</td>";
                 echo "<td class='py-3 px-4 text-center'>

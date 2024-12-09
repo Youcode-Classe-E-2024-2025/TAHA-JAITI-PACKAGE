@@ -33,3 +33,17 @@ viewPackBtn.addEventListener('click', () => {
         packagesDisplay.classList.add('hidden');
     }
 });
+document.addEventListener('DOMContentLoaded', () => {
+    const oldMsg = document.querySelector('.msg') || null;
+    if (oldMsg) {
+        console.log('MSG EXISTS', oldMsg);
+        setTimeout(() => {
+            oldMsg.remove();
+            console.log('MSG REMOVED');
+        }, 5000);
+    }
+    else {
+        console.log('no msg found');
+        return;
+    }
+});
