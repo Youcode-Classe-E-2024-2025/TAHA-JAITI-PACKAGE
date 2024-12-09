@@ -9,6 +9,7 @@ require_once './includes/connect.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Package Maneger</title>
 </head>
 
@@ -20,9 +21,9 @@ require_once './includes/connect.php';
 
     <main>
         <h1 class="text-center p-10 text-xl font-bold">Packages</h1>
-
+        
         <?php 
-            include "./includes/display.php";
+        include './views/addAuthor.html';
         ?>
         
     </main>
