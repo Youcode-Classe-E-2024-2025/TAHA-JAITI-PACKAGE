@@ -20,7 +20,6 @@ require_once './includes/connect.php';
     if (isset($_SESSION['msg'])) {
         $msg = $_SESSION['msg'];
         $type = $_SESSION['type'];
-
         echo "<div class='msg {$type} text-2xl'>{$msg}</div>";
 
         unset($_SESSION["msg"], $_SESSION['result']);

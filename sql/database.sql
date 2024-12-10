@@ -1,4 +1,4 @@
--- CREATE DATABASE package_manager;
+CREATE DATABASE package_manager;
 
 \c package_manager;
 
