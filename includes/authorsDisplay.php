@@ -1,8 +1,7 @@
 <?php
 include "connect.php";
 
-$sql = "
-SELECT * FROM authors";
+$sql = "SELECT * FROM authors ORDER BY id";
 
 $result = pg_query($conn, $sql);
 

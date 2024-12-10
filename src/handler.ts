@@ -105,16 +105,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
 Object.keys(editHandlers).forEach(key => {
     const item = editHandlers[key as keyof typeof editHandlers];
-
     if (item.openBtn && item.container && item.closeBtn){
         item.openBtn.forEach(btn => {
             btn.addEventListener('click', (e) => {
-                const row = btn.parentElement?.parentElement as HTMLTableRowElement;
-                const authorId = document.querySelector('#editAuthorId') as HTMLInputElement;
-                if (row && authorId) {
-                    const id = row.querySelector('td:nth-child(1)') as HTMLTableColElement;
-                    authorId.value = String(id.textContent);
+                const row = btn.closest('tr') as HTMLTableRowElement;
+                if (row){
+                    const [id,name,mail] = row.querySelectorAll('td');
+                    const authorId = document.querySelector('#editAuthorId') as HTMLInputElement;
+                    const nameInput = authorId.nextElementSibling as HTMLInputElement;
+                    const mailInput = nameInput.nextElementSibling as HTMLInputElement;
+
+                    if (authorId&& nameInput && mailInput){
+                        authorId.value = String(id.textContent);
+                        nameInput.value = String(name.textContent);
+                        mailInput.value = String(mail.textContent);
+                    }
                 }
+
                 item.container.classList.remove('hidden');
             });
         });

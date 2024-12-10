@@ -100,12 +100,17 @@ Object.keys(editHandlers).forEach(key => {
     if (item.openBtn && item.container && item.closeBtn) {
         item.openBtn.forEach(btn => {
             btn.addEventListener('click', (e) => {
-                var _a;
-                const row = (_a = btn.parentElement) === null || _a === void 0 ? void 0 : _a.parentElement;
-                const authorId = document.querySelector('#editAuthorId');
-                if (row && authorId) {
-                    const id = row.querySelector('td:nth-child(1)');
-                    authorId.value = String(id.textContent);
+                const row = btn.closest('tr');
+                if (row) {
+                    const [id, name, mail] = row.querySelectorAll('td');
+                    const authorId = document.querySelector('#editAuthorId');
+                    const nameInput = authorId.nextElementSibling;
+                    const mailInput = nameInput.nextElementSibling;
+                    if (authorId && nameInput && mailInput) {
+                        authorId.value = String(id.textContent);
+                        nameInput.value = String(name.textContent);
+                        mailInput.value = String(mail.textContent);
+                    }
                 }
                 item.container.classList.remove('hidden');
             });
