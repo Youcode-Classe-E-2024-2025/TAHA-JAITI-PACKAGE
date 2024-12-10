@@ -9,12 +9,12 @@ const addBtnsContainer = document.getElementById('addBtnsContainer') as HTMLDivE
 
 const editHandlers = {
     author: {
-        container:  document.getElementById('editAuthorContainer') as HTMLDivElement,
+        container: document.getElementById('editAuthorContainer') as HTMLDivElement,
         openBtn: document.querySelectorAll<HTMLButtonElement>('#openEditAuthor'),
         closeBtn: document.getElementById('closeEditAuthor') as HTMLButtonElement
     },
     package: {
-        container:  document.getElementById('editPackageContainer') as HTMLDivElement,
+        container: document.getElementById('editPackageContainer') as HTMLDivElement,
         openBtn: document.querySelectorAll<HTMLButtonElement>('#openEditPackage'),
         closeBtn: document.getElementById('closeEditPackage') as HTMLButtonElement
     }
@@ -43,10 +43,10 @@ let packagesOpen: boolean = false;
 let addBtnsOpen: boolean = false;
 
 openAdding.addEventListener('click', () => {
-    if (addBtnsContainer && !addBtnsOpen){
+    if (addBtnsContainer && !addBtnsOpen) {
         addBtnsContainer.classList.remove('hidden');
         addBtnsOpen = true;
-    } else if (addBtnsOpen){
+    } else if (addBtnsOpen) {
         addBtnsOpen = false;
         addBtnsContainer.classList.add('hidden');
     }
@@ -54,7 +54,7 @@ openAdding.addEventListener('click', () => {
 
 Object.keys(handlers).forEach((key) => {
     const item = handlers[key as keyof typeof handlers];
-    if (item.container && item.closeBtn && item.openBtn){
+    if (item.container && item.closeBtn && item.openBtn) {
         item.openBtn.addEventListener('click', () => {
             item.container.classList.remove('hidden');
         });
@@ -67,7 +67,7 @@ Object.keys(handlers).forEach((key) => {
 
 viewAuthorsBtn.addEventListener('click', () => {
     if (authorsDisplay && !authorsOpen) {
-        if (packagesOpen){
+        if (packagesOpen) {
             packagesOpen = false;
             packagesDisplay.classList.add('hidden');
         }
@@ -82,13 +82,13 @@ viewAuthorsBtn.addEventListener('click', () => {
 
 viewPackBtn.addEventListener('click', () => {
     if (packagesDisplay && !packagesOpen) {
-        if (authorsOpen){
+        if (authorsOpen) {
             authorsOpen = false;
             authorsDisplay.classList.add('hidden');
         }
         packagesDisplay.classList.remove('hidden');
         packagesOpen = true;
-    } else if (packagesDisplay && packagesOpen){
+    } else if (packagesDisplay && packagesOpen) {
         packagesOpen = false;
         packagesDisplay.classList.add('hidden');
     }
@@ -98,10 +98,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const oldMsg = document.querySelector('.msg') as HTMLDivElement || null;
     if (oldMsg) {
         console.log('MSG EXISTS', oldMsg);
-        setTimeout( () => {
+        setTimeout(() => {
             oldMsg.remove();
             console.log('MSG REMOVED');
-        },5000)
+        }, 5000)
     } else {
         console.log('no msg found');
         return;
@@ -110,20 +110,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
 Object.keys(editHandlers).forEach(key => {
     const item = editHandlers[key as keyof typeof editHandlers];
-    if (item.openBtn && item.container && item.closeBtn){
+    if (item.openBtn && item.container && item.closeBtn) {
         item.openBtn.forEach(btn => {
             btn.addEventListener('click', (e) => {
                 const row = btn.closest('tr') as HTMLTableRowElement;
-                if (row){
-                    const [id,name,mail] = row.querySelectorAll('td');
-                    const authorId = document.querySelector('#editAuthorId') as HTMLInputElement;
-                    const nameInput = authorId.nextElementSibling as HTMLInputElement;
-                    const mailInput = nameInput.nextElementSibling as HTMLInputElement;
+                if (row) {
+                    if (key === 'author') {
+                        const [id, name, mail] = row.querySelectorAll('td');
+                        const authorId = document.querySelector('#editAuthorId') as HTMLInputElement;
+                        const nameInput = authorId.nextElementSibling as HTMLInputElement;
+                        const mailInput = nameInput.nextElementSibling as HTMLInputElement;
 
-                    if (authorId&& nameInput && mailInput){
-                        authorId.value = String(id.textContent);
-                        nameInput.value = String(name.textContent);
-                        mailInput.value = String(mail.textContent);
+                        if (authorId && nameInput && mailInput) {
+                            authorId.value = String(id.textContent);
+                            nameInput.value = String(name.textContent);
+                            mailInput.value = String(mail.textContent);
+                        }
+                    } else if (key === "package") {
+
+                        const [packId, packName, packDesc, packDate, packAuthor] = row.querySelectorAll('td');
+                        const packageId = document.querySelector('#editPackageId') as HTMLInputElement;
+                        const packNameInput = packageId.nextElementSibling as HTMLInputElement;
+                        const packDescInput = packNameInput.nextElementSibling as HTMLInputElement;
+                        const packDateInput = packDescInput.nextElementSibling as HTMLInputElement;
+                        const packAuthorInput = packDateInput.nextElementSibling as HTMLInputElement;
+
+                        if (packageId && packNameInput && packDescInput && packDateInput && packAuthorInput) {
+                            packageId.value = String(packId.textContent);
+                            packNameInput.value = String(packName.textContent);
+                            packDescInput.value = String(packDesc.textContent);
+                            packAuthorInput.value = String(packAuthor.textContent);
+                        }
                     }
                 }
 

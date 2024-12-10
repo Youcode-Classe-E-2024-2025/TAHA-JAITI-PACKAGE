@@ -107,14 +107,30 @@ Object.keys(editHandlers).forEach(key => {
             btn.addEventListener('click', (e) => {
                 const row = btn.closest('tr');
                 if (row) {
-                    const [id, name, mail] = row.querySelectorAll('td');
-                    const authorId = document.querySelector('#editAuthorId');
-                    const nameInput = authorId.nextElementSibling;
-                    const mailInput = nameInput.nextElementSibling;
-                    if (authorId && nameInput && mailInput) {
-                        authorId.value = String(id.textContent);
-                        nameInput.value = String(name.textContent);
-                        mailInput.value = String(mail.textContent);
+                    if (key === 'author') {
+                        const [id, name, mail] = row.querySelectorAll('td');
+                        const authorId = document.querySelector('#editAuthorId');
+                        const nameInput = authorId.nextElementSibling;
+                        const mailInput = nameInput.nextElementSibling;
+                        if (authorId && nameInput && mailInput) {
+                            authorId.value = String(id.textContent);
+                            nameInput.value = String(name.textContent);
+                            mailInput.value = String(mail.textContent);
+                        }
+                    }
+                    else if (key === "package") {
+                        const [packId, packName, packDesc, packDate, packAuthor] = row.querySelectorAll('td');
+                        const packageId = document.querySelector('#editPackageId');
+                        const packNameInput = packageId.nextElementSibling;
+                        const packDescInput = packNameInput.nextElementSibling;
+                        const packDateInput = packDescInput.nextElementSibling;
+                        const packAuthorInput = packDateInput.nextElementSibling;
+                        if (packageId && packNameInput && packDescInput && packDateInput && packAuthorInput) {
+                            packageId.value = String(packId.textContent);
+                            packNameInput.value = String(packName.textContent);
+                            packDescInput.value = String(packDesc.textContent);
+                            packAuthorInput.value = String(packAuthor.textContent);
+                        }
                     }
                 }
                 item.container.classList.remove('hidden');
