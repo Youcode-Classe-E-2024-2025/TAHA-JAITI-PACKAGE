@@ -10,8 +10,13 @@ const addBtnsContainer = document.getElementById('addBtnsContainer') as HTMLDivE
 const editHandlers = {
     author: {
         container:  document.getElementById('editAuthorContainer') as HTMLDivElement,
-        openBtn: document.querySelectorAll('#openEditAuthor') as NodeListOf<HTMLButtonElement>,
+        openBtn: document.querySelectorAll<HTMLButtonElement>('#openEditAuthor'),
         closeBtn: document.getElementById('closeEditAuthor') as HTMLButtonElement
+    },
+    package: {
+        container:  document.getElementById('editPackageContainer') as HTMLDivElement,
+        openBtn: document.querySelectorAll<HTMLButtonElement>('#openEditPackage'),
+        closeBtn: document.getElementById('closeEditPackage') as HTMLButtonElement
     }
 }
 

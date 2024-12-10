@@ -10,6 +10,11 @@ const editHandlers = {
         container: document.getElementById('editAuthorContainer'),
         openBtn: document.querySelectorAll('#openEditAuthor'),
         closeBtn: document.getElementById('closeEditAuthor')
+    },
+    package: {
+        container: document.getElementById('editPackageContainer'),
+        openBtn: document.querySelectorAll('#openEditPackage'),
+        closeBtn: document.getElementById('closeEditPackage')
     }
 };
 const handlers = {
