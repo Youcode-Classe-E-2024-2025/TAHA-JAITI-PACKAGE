@@ -6,6 +6,15 @@ const packagesDisplay = document.getElementById('packagesDisplay') as HTMLDivEle
 const openAdding = document.getElementById('openAdding') as HTMLButtonElement;
 const addBtnsContainer = document.getElementById('addBtnsContainer') as HTMLDivElement;
 
+
+const editHandlers = {
+    author: {
+        container:  document.getElementById('editAuthorContainer') as HTMLDivElement,
+        openBtn: document.querySelectorAll('#openEditAuthor') as NodeListOf<HTMLButtonElement>,
+        closeBtn: document.getElementById('closeEditAuthor') as HTMLButtonElement
+    }
+}
+
 const handlers = {
     author: {
         container: document.getElementById('authorContainer') as HTMLDivElement,
@@ -91,5 +100,28 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         console.log('no msg found');
         return;
+    }
+});
+
+Object.keys(editHandlers).forEach(key => {
+    const item = editHandlers[key as keyof typeof editHandlers];
+
+    if (item.openBtn && item.container && item.closeBtn){
+        item.openBtn.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const row = btn.parentElement?.parentElement as HTMLTableRowElement;
+                const authorId = document.querySelector('#editAuthorId') as HTMLInputElement;
+                if (row && authorId) {
+                    const id = row.querySelector('td:nth-child(1)') as HTMLTableColElement;
+                    authorId.value = String(id.textContent);
+                    console.log(authorId.value);
+                }
+
+                item.container.classList.remove('hidden');
+            });
+        });
+        item.closeBtn.addEventListener('click', () => {
+            item.container.classList.add('hidden');
+        });
     }
 });

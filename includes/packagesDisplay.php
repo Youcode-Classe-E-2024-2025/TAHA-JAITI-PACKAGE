@@ -32,7 +32,7 @@ if (!$result) {
     <h1 class="text-center p-10 text-white text-xl font-bold">Packages</h1>
     <table class="w-full border-collapse border border-gray-500 shadow-lg rounded-sm overflow-hidden">
         <thead>
-            <tr class="bg-gradient-to-r from-red-700 to-indigo-800 text-white text-sm font-medium uppercase tracking-wide">
+            <tr class="bg-indigo-800 text-white text-sm font-medium uppercase tracking-wide">
                 <th class="py-3 px-4 text-left">ID</th>
                 <th class="py-3 px-4 text-left">Name</th>
                 <th class="py-3 px-4 text-left">Description</th>

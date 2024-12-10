@@ -5,6 +5,13 @@ const authorsDisplay = document.getElementById('authorsDisplay');
 const packagesDisplay = document.getElementById('packagesDisplay');
 const openAdding = document.getElementById('openAdding');
 const addBtnsContainer = document.getElementById('addBtnsContainer');
+const editHandlers = {
+    author: {
+        container: document.getElementById('editAuthorContainer'),
+        openBtn: document.querySelectorAll('#openEditAuthor'),
+        closeBtn: document.getElementById('closeEditAuthor')
+    }
+};
 const handlers = {
     author: {
         container: document.getElementById('authorContainer'),
@@ -86,5 +93,26 @@ document.addEventListener('DOMContentLoaded', () => {
     else {
         console.log('no msg found');
         return;
+    }
+});
+Object.keys(editHandlers).forEach(key => {
+    const item = editHandlers[key];
+    if (item.openBtn && item.container && item.closeBtn) {
+        item.openBtn.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                var _a;
+                const row = (_a = btn.parentElement) === null || _a === void 0 ? void 0 : _a.parentElement;
+                const authorId = document.querySelector('#editAuthorId');
+                if (row && authorId) {
+                    const id = row.querySelector('td:nth-child(1)');
+                    authorId.value = String(id.textContent);
+                    console.log(authorId.value);
+                }
+                item.container.classList.remove('hidden');
+            });
+        });
+        item.closeBtn.addEventListener('click', () => {
+            item.container.classList.add('hidden');
+        });
     }
 });

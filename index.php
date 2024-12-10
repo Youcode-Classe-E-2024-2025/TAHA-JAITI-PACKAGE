@@ -10,7 +10,7 @@ require_once './includes/connect.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Package Maneger</title>
+    <title>Package Manager</title>
 </head>
 
 <body class="bg-black ">
@@ -37,7 +37,8 @@ require_once './includes/connect.php';
 
     <main>
         <?php
-        include './views/addModals.html';    
+        include './views/addModals.html';
+        include './views/editModals.html';    
         include './includes/packagesDisplay.php';
         include './includes/authorsDisplay.php';
         ?>
