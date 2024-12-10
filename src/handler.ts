@@ -114,9 +114,7 @@ Object.keys(editHandlers).forEach(key => {
                 if (row && authorId) {
                     const id = row.querySelector('td:nth-child(1)') as HTMLTableColElement;
                     authorId.value = String(id.textContent);
-                    console.log(authorId.value);
                 }
-
                 item.container.classList.remove('hidden');
             });
         });
