@@ -5,7 +5,7 @@ if ($conn){
     echo 'connected';
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['authorSubmit'])) {
+if (isset($_POST['authorSubmit'])) {
     $authorName = trim($_POST['authorName']);
     $authorMail = trim($_POST['authorMail']);
 
